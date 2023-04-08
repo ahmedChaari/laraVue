@@ -27,11 +27,12 @@ Route::post('/login',               [AuthController::class,  'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout',              [AuthController::class, 'logout']);
     Route::get('list/users',            [UserController::class, 'listUsers']);
-    
+
 });
 
 // companies
 Route::get('list/companies',         [CompanyController::class, 'listCompanies']);
+Route::put('update/company/{company}',         [CompanyController::class, 'updateCompany']);
 
 
 // Route::post('storeProduct',          [ProductController::class, 'storeProduct']);

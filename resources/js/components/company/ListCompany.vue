@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+
         <div class="content">
                 <h2 class="intro-y text-lg font-medium mt-10">
                     LIST OF COMPANIES
@@ -13,16 +13,16 @@
 <!-- BEGIN: Modal Toggle -->
 
     <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview" class="btn btn-primary shadow-md mr-2">
-        Add New User</a> 
+        Add New User</a>
 <!-- END: Modal Toggle -->
 
 
-                        
+
                         <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
                         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                             <div class="w-56 relative text-slate-500">
                                 <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
+                                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,6 @@
                                     <th class="whitespace-nowrap">IMAGE</th>
                                     <th class="whitespace-nowrap">NAME</th>
                                     <th class="text-center whitespace-nowrap">ADRESSE</th>
-                                    <th class="text-center whitespace-nowrap">STATUS</th>
                                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                                 </tr>
                             </thead>
@@ -48,19 +47,21 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class="font-medium whitespace-nowrap">{{ company.name }}</a> 
-                                       
+                                        <a href="" class="font-medium whitespace-nowrap">{{ company.name }}</a>
+
                                     </td>
                                     <td class="text-center">{{ company.address }}</td>
-                                    <td class="w-40">
-                                    <div class="flex items-center justify-center text-danger"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> Inactive </div>
-                                    </td>
+
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
-                                            <a class="flex items-center mr-3" href="javascript:;"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                            <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview"
+                                             @click="showEditCompany(company)"> <i data-lucide="check-square" class="w-4 h-4 mr-1" >
+
+                                            </i> Edit </a>
                                             <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                         </div>
                                     </td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -98,56 +99,40 @@
                     </div>
                     <!-- END: Pagination -->
                 </div>
-                <!-- BEGIN: Delete Confirmation Modal -->
-                <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body p-0">
-                                <div class="p-5 text-center">
-                                    <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i> 
-                                    <div class="text-3xl mt-5">Are you sure?</div>
-                                    <div class="text-slate-500 mt-2">
-                                        Do you really want to delete these records? 
-                                        <br>
-                                        This process cannot be undone.
-                                    </div>
-                                </div>
-                                <div class="px-5 pb-8 text-center">
-                                    <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                                    <button type="button" class="btn btn-danger w-24">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END: Delete Confirmation Modal -->
+
             </div>
 
 
 
+        <!-- BEGIN: Modal Content -->
+        <div id="header-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- BEGIN: Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="font-medium text-base mr-auto">Broadcast Message</h2>
 
 
- <!-- BEGIN: Modal Content -->
- <div id="header-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-     <div class="modal-dialog">
-         <div class="modal-content">
-             <!-- BEGIN: Modal Header -->
-             <div class="modal-header">
-                 <h2 class="font-medium text-base mr-auto">Broadcast Message</h2> 
-                 
-                 
-             </div> <!-- END: Modal Header -->
-             <!-- BEGIN: Modal Body -->
-             <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                 <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Name of company</label> <input id="modal-form-1" type="text" class="form-control" placeholder="name"> </div>
-            
-                
-             </div> <!-- END: Modal Body -->
-             <!-- BEGIN: Modal Footer -->
-             <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button> <button type="button" class="btn btn-primary w-20">Send</button> </div> <!-- END: Modal Footer -->
-         </div>
-     </div>
- </div> <!-- END: Modal Content -->
+                    </div> <!-- END: Modal Header -->
+                    <!-- BEGIN: Modal Body -->
+                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Name of company</label>
+                            <input id="modal-form-1" type="text" class="form-control" placeholder="name" v-model="edite.name">
+                        </div>
+                        <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Address of company</label>
+                            <input id="modal-form-1" type="text" class="form-control" placeholder="address" v-model="edite.address">
+                        </div>
+
+                    </div> <!-- END: Modal Body -->
+                    <!-- BEGIN: Modal Footer -->
+                    <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                        <button type="submit" class="btn btn-primary w-20" id="submitcompay" @click="SubmitCompany()">Update</button>
+                    </div> <!-- END: Modal Footer -->
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
+
+
 
 
 
@@ -155,10 +140,18 @@
 </template>
 <script>
 
+
+
 export default {
     data() {
         return {
             companies:{},
+            edite:{
+                id:'',
+                name:'',
+                address:'',
+            },
+            id:'',
         }
     },
     methods: {
@@ -167,13 +160,30 @@ export default {
             .then((response=>{
                 this.companies = response.data.companies;
             }))
+        },
+        showEditCompany(data){
+            this.edite.id = data.id,
+            this.edite.name = data.name,
+            this.edite.address = data.address
+        },
+        SubmitCompany(){
+            axios.put('/api/update/company/'+this.edite.id, this.edite)
+           // Can accept an Object of options
+           if (response.status == 200) {
+            alert('ok');
+           }else{
+            alert('not not');
+           }
+
+
+
         }
-       
+
     },
     created() {
         this.getcompanies();
-       
+
     },
-    
+
 }
 </script>

@@ -9,7 +9,7 @@
         <link href="{{ asset('dist/images/logo.svg') }}" rel="shortcut icon">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-      
+
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ asset('dist/css/app.css')}}" />
         <!-- END: CSS Assets-->
@@ -17,13 +17,12 @@
     </head>
     <body id="app">
 
-    <router-view />
 
             <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
             <script src="{{ asset('js/app.js') }}"></script>
             <script src="{{ asset('dist/js/app.js') }}"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 
     </body>
 </html>
