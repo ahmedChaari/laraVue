@@ -26,7 +26,9 @@ const routes = [
         meta: {requiresAuth: true}
 
     },
-    { path:'/users', component: ListUser,  name: 'user.index',   meta: {requiresAuth: true} },
+    { path:'/users', component: ListUser,  name: 'user.index',   
+    // meta: {requiresAuth: true}
+     },
     { path:'/companies', component: ListCompany,  name: 'company.index' }
 ];
 

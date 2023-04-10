@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CompanyController;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,17 +23,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/login',               [AuthController::class,  'login']);
+Route::post('/login',         [AuthController::class,  'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('logout',              [AuthController::class, 'logout']);
-    Route::get('list/users',            [UserController::class, 'listUsers']);
-
+    Route::post('logout',     [AuthController::class, 'logout']);
+    
 });
 
+Route::get('list/users',      [UserController::class, 'listUsers']);
 // companies
-Route::get('list/companies',         [CompanyController::class, 'listCompanies']);
-Route::put('update/company/{company}',         [CompanyController::class, 'updateCompany']);
+Route::get('list/companies',  [CompanyController::class, 'listCompanies']);
+Route::put('update/company/{company}',[CompanyController::class, 'updateCompany']);
 
+// roles
+Route::get('list/roles', [RoleController::class, 'listRoles']);
 
-// Route::post('storeProduct',          [ProductController::class, 'storeProduct']);

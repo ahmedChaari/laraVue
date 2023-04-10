@@ -16,7 +16,7 @@ class RoleController extends Controller
             $roles = RoleResource::collection(Role::latest()
                 ->get());
             return response([
-                $roles,
+                'roles' => $roles,
                 'message'    => 'List Of Roles !',
                 ], 200); 
         
