@@ -27,13 +27,20 @@ Route::post('/login',         [AuthController::class,  'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout',     [AuthController::class, 'logout']);
-    
 });
 
-Route::get('list/users',      [UserController::class, 'listUsers']);
+//users
+Route::get('list/users',         [UserController::class, 'listUsers']);
+Route::put('update/user/{user}', [UserController::class, 'updateUser']);
+Route::delete('delete/user/{id}',[UserController::class, 'deleteUser']);
+Route::post('add/user',          [UserController::class, 'storeUser']);
+
+
 // companies
-Route::get('list/companies',  [CompanyController::class, 'listCompanies']);
+Route::get('list/companies',          [CompanyController::class, 'listCompanies']);
 Route::put('update/company/{company}',[CompanyController::class, 'updateCompany']);
+Route::post('add/company',            [CompanyController::class, 'storeCompany']);
+Route::delete('delete/company/{id}',  [CompanyController::class, 'deleteCompany']);
 
 // roles
 Route::get('list/roles', [RoleController::class, 'listRoles']);

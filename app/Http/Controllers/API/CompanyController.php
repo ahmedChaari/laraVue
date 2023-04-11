@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -30,8 +31,28 @@ class CompanyController extends Controller
             ]);
             return response([
                 'company'     => $company,
-                'message' => 'update the section !',
+                'message' => 'update the company !',
                     ], 200);
+    }
+    public function storeCompany(Request $request){
+        $company    = new Company();
+        $company->name      = $request->name;
+        $company->address   = $request->address;
+
+                   $company->save();
+
+        return response([
+        'company' => $company,
+        'message'    => 'create a new user !',
+            ], 200);
+
+    }
+
+    public function deleteCompany($id){
+        Company::findOrFail($id)->delete();
+        return response([
+            'message'    => 'The company was Deleted',
+            ], 200);
     }
 
 }

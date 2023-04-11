@@ -1,11 +1,12 @@
+require('./bootstrap');
 
-require('./bootstrap')
 import { createApp } from 'vue';
 import router from './router';
 
-import Toast from "vue-toastification";
-// Import the CSS or use your own!
-import "vue-toastification/dist/index.css";
+
+
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 import App from './App.vue';
 import TopBarComponent from './components/template/TopBarComponent.vue';
@@ -22,13 +23,14 @@ const options = {
 
 
 
+
 const app = createApp(App);
 
 app.component('top-bare', TopBarComponent);
 app.component('side-bare', SideBarComponent);
 app.component('right-bare', RightBarComponent);
 app.component('admin-login', AdminLogin);
-app.use(Toast, options);
+
 
 app.component(
 
@@ -37,3 +39,11 @@ app.component(
     );
 
 app.use(router).mount("#app");
+
+const $toast = useToast();
+let instance = $toast.success('You did it!');
+// Force dismiss specific toast
+instance.dismiss();
+
+// Dismiss all opened toast immediately
+$toast.clear();
