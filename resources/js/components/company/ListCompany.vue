@@ -1,6 +1,10 @@
 <template>
     <div>
 
+        <topBare></topBare>
+        <div class="flex overflow-hidden">
+
+        <sideBare></sideBare>
         <div class="content">
                 <h2 class="intro-y text-lg font-medium mt-10">
                     LIST OF COMPANIES
@@ -72,8 +76,7 @@
                     <!-- END: Data List -->
                 </div>
 
-            </div>
-
+        </div>
             <!-- BEGIN: Modal Content delete company -->
             <div id="button-modal-delete" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -84,73 +87,70 @@
                                 <div class="text-slate-500 mt-2">Are you sur you need to delete companu</div>
                             </div>
                             <div class="px-5 pb-8 text-center"> <button type="button" data-tw-dismiss="modal" class="btn btn-primary w-24"
-                                 @click="deleteCompany">Yes</button> </div>
+                                    @click="deleteCompany">Yes</button> </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- END: Modal Content -->
+            <!-- BEGIN: Modal Content create company-->
+            <div id="add-company" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- BEGIN: Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="font-medium text-base mr-auto">add a new company</h2>
 
-        <!-- BEGIN: Modal Content create company-->
-        <div id="add-company" class="modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- BEGIN: Modal Header -->
-                    <div class="modal-header">
-                        <h2 class="font-medium text-base mr-auto">add a new company</h2>
 
+                        </div> <!-- END: Modal Header -->
+                        <!-- BEGIN: Modal Body -->
+                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                            <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Name of company</label>
+                                <input id="name" type="text" name="name" class="form-control" placeholder="name" v-model="addData.name">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Address of company</label>
+                                <input id="address" type="text" name="address" class="form-control" placeholder="address" v-model="addData.address">
+                            </div>
 
-                    </div> <!-- END: Modal Header -->
-                    <!-- BEGIN: Modal Body -->
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Name of company</label>
-                            <input id="name" type="text" name="name" class="form-control" placeholder="name" v-model="addData.name">
-                        </div>
-                        <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Address of company</label>
-                            <input id="address" type="text" name="address" class="form-control" placeholder="address" v-model="addData.address">
-                        </div>
-
-                    </div> <!-- END: Modal Body -->
-                    <!-- BEGIN: Modal Footer -->
-                    <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                        <button type="submit" class="btn btn-primary w-20" id="addCompany" data-tw-dismiss="modal"
-                         @click="AddCompany()">add</button>
-                    </div> <!-- END: Modal Footer -->
+                        </div> <!-- END: Modal Body -->
+                        <!-- BEGIN: Modal Footer -->
+                        <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                            <button type="submit" class="btn btn-primary w-20" id="addCompany" data-tw-dismiss="modal"
+                                @click="AddCompany()">add</button>
+                        </div> <!-- END: Modal Footer -->
+                    </div>
                 </div>
             </div>
+                <!-- END: Modal Content -->
+            <!-- BEGIN: Modal Content -->
+            <div id="header-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- BEGIN: Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="font-medium text-base mr-auto">update company</h2>
+
+
+                        </div> <!-- END: Modal Header -->
+                        <!-- BEGIN: Modal Body -->
+                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                            <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Name of company</label>
+                                <input id="modal-form-1" type="text" class="form-control" placeholder="name" v-model="edite.name">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Address of company</label>
+                                <input id="modal-form-1" type="text" class="form-control" placeholder="address" v-model="edite.address">
+                            </div>
+
+                        </div> <!-- END: Modal Body -->
+                        <!-- BEGIN: Modal Footer -->
+                        <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                            <button type="submit" class="btn btn-primary w-20" id="submitcompay" data-tw-dismiss="modal"
+                                @click="SubmitCompany()">Update</button>
+                        </div> <!-- END: Modal Footer -->
+                    </div>
+                </div>
+            </div> <!-- END: Modal Content -->
         </div>
-         <!-- END: Modal Content -->
-
-
-        <!-- BEGIN: Modal Content -->
-        <div id="header-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- BEGIN: Modal Header -->
-                    <div class="modal-header">
-                        <h2 class="font-medium text-base mr-auto">update company</h2>
-
-
-                    </div> <!-- END: Modal Header -->
-                    <!-- BEGIN: Modal Body -->
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Name of company</label>
-                            <input id="modal-form-1" type="text" class="form-control" placeholder="name" v-model="edite.name">
-                        </div>
-                        <div class="col-span-12 sm:col-span-12"> <label for="modal-form-1" class="form-label"> Address of company</label>
-                            <input id="modal-form-1" type="text" class="form-control" placeholder="address" v-model="edite.address">
-                        </div>
-
-                    </div> <!-- END: Modal Body -->
-                    <!-- BEGIN: Modal Footer -->
-                    <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                        <button type="submit" class="btn btn-primary w-20" id="submitcompay" data-tw-dismiss="modal"
-                         @click="SubmitCompany()">Update</button>
-                    </div> <!-- END: Modal Footer -->
-                </div>
-            </div>
-        </div> <!-- END: Modal Content -->
-
 
 
     </div>
@@ -158,9 +158,15 @@
 <script>
 import * as $ from 'jquery';
 
+import topBare from '../template/TopBarComponent.vue'
+import sideBare from '../template/SideBarComponent.vue'
 
 
 export default {
+    components: {
+        topBare,
+        sideBare,
+  },
     data() {
         return {
             companies:{},

@@ -9,6 +9,8 @@ import store from "../components/store";
 
 import Login from "../components/auth/Login.vue"
 
+import notFound from '../components/notFound/notFound.vue'
+
 
 
 const routes = [
@@ -23,13 +25,19 @@ const routes = [
         path:'/home',
         component: Home,
         name: 'home.index',
-        meta: {requiresAuth: true}
+       // meta: {requiresAuth: true}
 
     },
-    { path:'/users', component: ListUser,  name: 'user.index',   
+    { path:'/users', component: ListUser,  name: 'user.index',
     // meta: {requiresAuth: true}
      },
-    { path:'/companies', component: ListCompany,  name: 'company.index' }
+    { path:'/companies', component: ListCompany,  name: 'company.index' },
+    //not found
+    {
+        path: '/:pathMatch(.*)*',
+        component:notFound,
+    }
+
 ];
 
 const router = createRouter({

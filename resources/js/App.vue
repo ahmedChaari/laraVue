@@ -1,19 +1,11 @@
 <template>
     <div>
-        <top-bare></top-bare>
-        <div class="flex overflow-hidden">
-            <side-bare></side-bare>
-            <!-- BEGIN: Content -->
-            <div class="content">
-                <router-view></router-view>
-            </div>
-        </div>
-        
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>

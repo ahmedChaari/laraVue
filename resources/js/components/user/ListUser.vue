@@ -1,6 +1,8 @@
 <template>
     <div>
-
+        <topBare></topBare>
+        <div class="flex overflow-hidden">
+        <sideBare></sideBare>
         <div class="content">
                 <h2 class="intro-y text-lg font-medium mt-10">
                     LIST OF USERS
@@ -86,116 +88,118 @@
                     <!-- END: Data List -->
 
                 </div>
-            </div>
-
-
-            <!-- BEGIN: Modal Content delete user -->
-            <div id="button-modal-delete" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content"> <a data-tw-dismiss="modal" href="javascript:;"> <i data-lucide="x" class="w-8 h-8 text-slate-400 alt-danger"></i> </a>
-                        <div class="modal-body p-0">
-                            <div class="p-5 text-center"> <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                                <div class="text-3xl mt-5">Delete user</div>
-                                <div class="text-slate-500 mt-2">Are you sur you need to delete this user</div>
-                            </div>
-                            <div class="px-5 pb-8 text-center"> <button type="button" data-tw-dismiss="modal" class="btn btn-primary w-24"
-                                 @click="deleteUser">Yes</button>
-                            </div>
+        </div>
+        <!-- BEGIN: Modal Content delete user -->
+        <div id="button-modal-delete" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content"> <a data-tw-dismiss="modal" href="javascript:;"> <i data-lucide="x" class="w-8 h-8 text-slate-400 alt-danger"></i> </a>
+                    <div class="modal-body p-0">
+                        <div class="p-5 text-center"> <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
+                            <div class="text-3xl mt-5">Delete user</div>
+                            <div class="text-slate-500 mt-2">Are you sur you need to delete this user</div>
+                        </div>
+                        <div class="px-5 pb-8 text-center"> <button type="button" data-tw-dismiss="modal" class="btn btn-primary w-24"
+                            @click="deleteUser">Yes</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END: Modal Content -->
+        </div>
+        <!-- END: Modal Content -->
+        <!-- BEGIN: Modal Content  add-->
+        <div id="headerPreviewAddUser" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- BEGIN: Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="font-medium text-base mr-auto">Broadcast Message</h2>
+                    </div> <!-- END: Modal Header -->
+                    <!-- BEGIN: Modal Body -->
+                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12 sm:col-span-6"> <label for="modal-form-1" class="form-label">Fulle Name</label>
+                            <input id="modal-form-1" type="text" name="name" class="form-control" placeholder="fulle name" v-model="addData.name"> </div>
+                        <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label" >Email</label>
+                            <input id="modal-form-2" type="text" name="email" class="form-control"  placeholder="example@gmail.com" v-model="addData.email"> </div>
+                        <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Tel</label>
+                            <input id="modal-form-2" type="text" name="tel" class="form-control" placeholder="0XX XXX XXX" v-model="addData.tel"> </div>
+                        <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Address</label>
+                            <input id="modal-form-2" type="text" name="address" class="form-control" placeholder="address" v-model="addData.address"> </div>
+                        <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Role</label>
+                            <select id="modal-form-6" name="role_id" class="form-select" v-model="addData.role_id">
+                                <option  value="" selected>--select--</option>
+                                <option v-for="role in roles" :key="role.id" :value="role.id">{{ role.name }}</option>
+                            </select>
+                        </div>
+                        <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Company</label>
+                            <select id="modal-form-6" name="company_id" class="form-select" v-model="addData.company_id">
+                                <option  value="" selected>--select--</option>
+                                <option v-for="company in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
+                            </select>
+                        </div>
+                    </div> <!-- END: Modal Body -->
+                    <!-- BEGIN: Modal Footer -->
+                    <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                        <a type="button"  @click="AddUser()" id="programmatically-toggle-modal"
+                        href="javascript:;"  data-tw-dismiss="modal"
+                        class="btn btn-primary w-20">Add</a> </div> <!-- END: Modal Footer -->
+                </div>
+            </div>
+        </div>
+        <!-- END: Modal Content -->
+        <!-- BEGIN: Modal Content update-->
+        <div id="headerPreview" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- BEGIN: Modal Header -->
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Broadcast Message</h2>
 
-            <!-- BEGIN: Modal Content  add-->
-            <div id="headerPreviewAddUser" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- BEGIN: Modal Header -->
-                        <div class="modal-header">
-                            <h2 class="font-medium text-base mr-auto">Broadcast Message</h2>
-                        </div> <!-- END: Modal Header -->
-                        <!-- BEGIN: Modal Body -->
-                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                            <div class="col-span-12 sm:col-span-6"> <label for="modal-form-1" class="form-label">Fulle Name</label>
-                                <input id="modal-form-1" type="text" name="name" class="form-control" placeholder="fulle name" v-model="addData.name"> </div>
-                            <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label" >Email</label>
-                                <input id="modal-form-2" type="text" name="email" class="form-control"  placeholder="example@gmail.com" v-model="addData.email"> </div>
-                            <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Tel</label>
-                                <input id="modal-form-2" type="text" name="tel" class="form-control" placeholder="0XX XXX XXX" v-model="addData.tel"> </div>
-                            <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Address</label>
-                                <input id="modal-form-2" type="text" name="address" class="form-control" placeholder="address" v-model="addData.address"> </div>
-                            <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Role</label>
-                                <select id="modal-form-6" name="role_id" class="form-select" v-model="addData.role_id">
-                                    <option  value="" selected>--select--</option>
-                                    <option v-for="role in roles" :key="role.id" :value="role.id">{{ role.name }}</option>
-                                </select>
-                            </div>
-                            <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Company</label>
-                                <select id="modal-form-6" name="company_id" class="form-select" v-model="addData.company_id">
-                                    <option  value="" selected>--select--</option>
-                                    <option v-for="company in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
-                                </select>
-                            </div>
-                        </div> <!-- END: Modal Body -->
-                        <!-- BEGIN: Modal Footer -->
-                        <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                            <a type="button"  @click="AddUser()" id="programmatically-toggle-modal"
-                            href="javascript:;"  data-tw-dismiss="modal"
-                            class="btn btn-primary w-20">Add</a> </div> <!-- END: Modal Footer -->
+
+                </div> <!-- END: Modal Header -->
+                <!-- BEGIN: Modal Body -->
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                    <div class="col-span-12 sm:col-span-6"> <label for="modal-form-1" class="form-label">Fulle Name</label>
+                        <input id="modal-form-1" type="text" class="form-control" placeholder="fulle name" v-model="edite.name"> </div>
+                    <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label" >Email</label>
+                        <input id="modal-form-2" type="text" class="form-control"  placeholder="example@gmail.com" v-model="edite.email"> </div>
+                    <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Tel</label>
+                        <input id="modal-form-2" type="text" class="form-control" placeholder="0XX XXX XXX" v-model="edite.tel"> </div>
+                    <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Address</label>
+                        <input id="modal-form-2" type="text" class="form-control" placeholder="address" v-model="edite.address"> </div>
+                    <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Role</label>
+                        <select id="modal-form-6" class="form-select" v-model="edite.role_id">
+                            <option v-for="role in roles" :key="role.id" :value="role.id">{{ role.name }}</option>
+                        </select>
                     </div>
-                </div>
-                </div>
-             <!-- END: Modal Content -->
-
-
- <!-- BEGIN: Modal Content update-->
- <div id="headerPreview" class="modal" tabindex="-1" aria-hidden="true">
-     <div class="modal-dialog">
-         <div class="modal-content">
-             <!-- BEGIN: Modal Header -->
-             <div class="modal-header">
-                 <h2 class="font-medium text-base mr-auto">Broadcast Message</h2>
-
-
-             </div> <!-- END: Modal Header -->
-             <!-- BEGIN: Modal Body -->
-             <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                 <div class="col-span-12 sm:col-span-6"> <label for="modal-form-1" class="form-label">Fulle Name</label>
-                    <input id="modal-form-1" type="text" class="form-control" placeholder="fulle name" v-model="edite.name"> </div>
-                 <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label" >Email</label>
-                    <input id="modal-form-2" type="text" class="form-control"  placeholder="example@gmail.com" v-model="edite.email"> </div>
-                 <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Tel</label>
-                    <input id="modal-form-2" type="text" class="form-control" placeholder="0XX XXX XXX" v-model="edite.tel"> </div>
-                 <div class="col-span-12 sm:col-span-6"> <label for="modal-form-2" class="form-label">Address</label>
-                    <input id="modal-form-2" type="text" class="form-control" placeholder="address" v-model="edite.address"> </div>
-                 <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Role</label>
-                    <select id="modal-form-6" class="form-select" v-model="edite.role_id">
-                        <option v-for="role in roles" :key="role.id" :value="role.id">{{ role.name }}</option>
-                     </select>
-                 </div>
-                 <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Company</label>
-                    <select id="modal-form-6" class="form-select" v-model="edite.company_id">
-                         <option v-for="company in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
-                     </select>
-                 </div>
-             </div> <!-- END: Modal Body -->
-             <!-- BEGIN: Modal Footer -->
-             <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                 <a type="button"  @click="SubmitUser()" id="programmatically-toggle-modal"
-                  href="javascript:;"  data-tw-dismiss="modal"
-                 class="btn btn-primary w-20">Update</a> </div> <!-- END: Modal Footer -->
-         </div>
-     </div>
+                    <div class="col-span-12 sm:col-span-6"> <label for="modal-form-6" class="form-label">Company</label>
+                        <select id="modal-form-6" class="form-select" v-model="edite.company_id">
+                            <option v-for="company in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
+                        </select>
+                    </div>
+                </div> <!-- END: Modal Body -->
+                <!-- BEGIN: Modal Footer -->
+                <div class="modal-footer"> <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                    <a type="button"  @click="SubmitUser()" id="programmatically-toggle-modal"
+                    href="javascript:;"  data-tw-dismiss="modal"
+                    class="btn btn-primary w-20">Update</a> </div> <!-- END: Modal Footer -->
+            </div>
+        </div>
+        </div>
+        <!-- END: Modal Content -->
+        </div>
     </div>
-    <!-- END: Modal Content -->
-
- </div>
 </template>
 <script>
 
 
+import topBare from '../template/TopBarComponent.vue'
+import sideBare from '../template/SideBarComponent.vue'
+
 export default {
+    components: {
+        topBare,
+        sideBare,
+    },
 
     data() {
         return {
