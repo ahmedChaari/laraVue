@@ -9,3 +9,16 @@ pour démarrer le projet il faut juste exécuter le commande suivant
 - npm install
 - php artisan serve
 - npm run dev
+
+## About .env
+- copy .env.example et modifier pour que .env
+- confuguration pour compt mail 
+# configuration Mail
+<li>MAIL_MAILER=smtp</li> 
+<li>MAIL_HOST=mail.mindcom.ma</li> 
+<li>MAIL_PORT=587</li> 
+<li>MAIL_USERNAME=ahmed@mindcom.ma</li> 
+<li>MAIL_PASSWORD=]S-CXFQo(S]k</li> 
+<li>MAIL_ENCRYPTION=tls</li> 
+<li>MAIL_FROM_ADDRESS=ahmed@mindcom.ma</li> 
+<li>MAIL_FROM_NAME="${APP_NAME}"</li> 
