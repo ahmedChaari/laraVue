@@ -39,7 +39,7 @@ const routes = [
         path:'/',
         component: Home,
         name: 'home.index',
-        meta: {requiresAuth: false}
+       // meta: {requiresAuth: false}
 
     },
     {   path:'/users', component: ListUser,
