@@ -15,13 +15,16 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
+    'paths' => ['api/*', '/login', 'sanctum/csrf-cookie','/logout'],
+
+    'allowed_methods' => ['HEAD, GET, POST, PUT, DELETE'],
 
     'allowed_origins' => ['*'],
+    //'allowed_origins' => [env('CLIENT_URL')],
 
     'allowed_origins_patterns' => [],
+
 
     'allowed_headers' => ['*'],
 
@@ -29,6 +32,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

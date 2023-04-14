@@ -12,13 +12,15 @@
                         <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
                             Sign In
                         </h2>
-                        <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">A few more clicks to sign in to your account.</div>
-
                         <div class="intro-x mt-8">
+                            <span class="text-danger" v-if="error">{{ error }}</span>
+
                             <input id="email" type="email" class="intro-x login__input form-control py-3 px-4 block "
-                            placeholder="Email" name="email" required autocomplete="email" autofocus v-model="email">
+                            placeholder="Email" name="email" required autocomplete="email" autofocus v-model="form.email">
+
                             <input type="password" class="intro-x login__input form-control py-3 px-4 block mt-4 "
-                            placeholder="Password" name="password"  required autocomplete="current-password" v-model="password">
+                            placeholder="Password" name="password"  required autocomplete="current-password" v-model="form.password">
+
                         </div>
                         <div class="intro-x flex text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">
                             <div class="flex items-center mr-auto">
@@ -53,7 +55,12 @@
 
 
 <script>
+
+import store from '../store/index'
 import adminLogin from '../template/AdminLogin.vue'
+import { ref } from 'vue'
+
+let error = ref('');
 
 export default {
     components: {
@@ -62,28 +69,49 @@ export default {
   },
     data() {
         return {
+            form :{email: '',password: ''},
+            errors:{},
             email: '',
             password: '',
+
+
         }
     },
     methods: {
-        login() {
-            axios.post('api/login', {
-                email: this.email,
-                password: this.password
+      async  handlelogin() {
+            try {
+               // await axios.get('/sanctum/csrf-cookie');
+                await axios.post('api/login',
+                this.form
+            )
+            .then (response =>{
+                  store.state.user.token = res.data.token;
+
+                    window.location = '/users';
+                })
+
+
+            } catch (error) {
+                this.error = error.response.data.errors
+            }
+        },
+
+
+        async   login() {
+            axios.get('/sanctum/csrf-cookie').then(response => {
+
+                axios.post('api/login', this.form)
+                        .then(response => {
+                            if (response.data.success){
+                             localStorage.setItem('token',response.data.token);
+                             window.location = '/dashboard';
+                      }else{
+                        error.value = response.data.message;
+                      }
+                    })
             })
 
 
-                    .then(response => {
-
-
-
-                  store.state.user.token = res.data.token;
-                    console.log(store.state.user.token);
-                    this.$router.push('/home');
-                })
-                .catch(err => console.log(err));
-                console.log('not work');
         }
     }
 

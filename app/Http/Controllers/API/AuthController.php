@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
      // Login A new Auth
-   
+
      public function login(Request $request) {
         $fields = $request->validate([
             'email'    => 'required|string',
@@ -18,7 +18,6 @@ class AuthController extends Controller
         ]);
         // Check email
         $user = User::where('email', $fields['email'])
-            // ->whereIn('role_id',['1','2','3','4'])
              ->first();
 
         // Check password
@@ -31,13 +30,15 @@ class AuthController extends Controller
 
         $response = [
            // 'user'    => new UserResource($user),
-           'user'    =>  $user,
-            'token'   => $token,
+           'success' => true,
+           'user'    => $user,
+           'token'   => $token,
+           'message' => 'User login siccessfully',
         ];
         return response($response, 200);
     }
 
-    public function logout(Request $request) {   
+    public function logout(Request $request) {
         $request->user()->tokens()->delete();
          return [
               'message'    => 'Logged out',

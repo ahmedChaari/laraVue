@@ -6,7 +6,7 @@
                 <!-- BEGIN: Logo -->
                 <a href="" class="logo -intro-x hidden md:flex xl:w-[180px] block">
                     <img alt="Midone - HTML Admin Template" class="logo__image w-6" src="dist/images/logo.svg">
-                    <span class="logo__text text-white text-lg ml-3"> Enigma </span> 
+                    <span class="logo__text text-white text-lg ml-3"> Enigma </span>
                 </a>
                 <!-- END: Logo -->
                 <!-- BEGIN: Breadcrumb -->
@@ -21,7 +21,7 @@
                 <div class="intro-x relative mr-3 sm:mr-6">
                     <div class="search hidden sm:block">
                         <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
-                        <i data-lucide="search" class="search__icon dark:text-slate-500"></i> 
+                        <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
                     </div>
                     <a class="notification notification--light sm:hidden" href=""> <i data-lucide="search" class="notification__icon dark:text-slate-500"></i> </a>
                     <div class="search-result">
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="ml-2 overflow-hidden">
                                     <div class="flex items-center">
-                                        <a href="javascript:;" class="font-medium truncate mr-5">Christian Bale</a> 
+                                        <a href="javascript:;" class="font-medium truncate mr-5">Christian Bale</a>
                                         <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">06:05 AM</div>
                                     </div>
                                     <div class="w-full truncate text-slate-500 mt-0.5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem </div>
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="ml-2 overflow-hidden">
                                     <div class="flex items-center">
-                                        <a href="javascript:;" class="font-medium truncate mr-5">Johnny Depp</a> 
+                                        <a href="javascript:;" class="font-medium truncate mr-5">Johnny Depp</a>
                                         <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">06:05 AM</div>
                                     </div>
                                     <div class="w-full truncate text-slate-500 mt-0.5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500</div>
@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="ml-2 overflow-hidden">
                                     <div class="flex items-center">
-                                        <a href="javascript:;" class="font-medium truncate mr-5">Robert De Niro</a> 
+                                        <a href="javascript:;" class="font-medium truncate mr-5">Robert De Niro</a>
                                         <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">05:09 AM</div>
                                     </div>
                                     <div class="w-full truncate text-slate-500 mt-0.5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 20</div>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="ml-2 overflow-hidden">
                                     <div class="flex items-center">
-                                        <a href="javascript:;" class="font-medium truncate mr-5">Morgan Freeman</a> 
+                                        <a href="javascript:;" class="font-medium truncate mr-5">Morgan Freeman</a>
                                         <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">01:10 PM</div>
                                     </div>
                                     <div class="w-full truncate text-slate-500 mt-0.5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 20</div>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="ml-2 overflow-hidden">
                                     <div class="flex items-center">
-                                        <a href="javascript:;" class="font-medium truncate mr-5">Russell Crowe</a> 
+                                        <a href="javascript:;" class="font-medium truncate mr-5">Russell Crowe</a>
                                         <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">06:05 AM</div>
                                     </div>
                                     <div class="w-full truncate text-slate-500 mt-0.5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 20</div>
@@ -198,19 +198,13 @@
                                 <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile </a>
                             </li>
                             <li>
-                                <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
-                            </li>
-                            <li>
-                                <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
-                            </li>
-                            <li>
                                 <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider border-white/[0.08]">
                             </li>
                             <li>
-                                <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                                <a href="" @click="logout()" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
                             </li>
                         </ul>
                     </div>
@@ -224,7 +218,16 @@
 <script>
 
 export default{
-    
+    methods: {
+        logout() {
+
+            localStorage.removeItem('token')
+                window.location = '/';
+
+
+        },
+    }
+
 }
 
 </script>

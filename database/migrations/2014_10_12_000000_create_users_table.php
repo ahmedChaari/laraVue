@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('tel');
             $table->boolean('status');
-            $table->integer('number_invite')->nullable();
+            $table->integer('number_invite')->nullable()->default(0);
             $table->text('address');
             $table->date('age')->format('d/m/Y');
             $table->boolean('valid');
